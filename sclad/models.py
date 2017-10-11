@@ -21,8 +21,9 @@ class ScladTov(models.Model):
     """
     Model representing a specific copy of a book (i.e. that can be borrowed from the library).
     """
-    tovars = models.ForeignKey(
+    mytovars = models.ForeignKey(
     		'Tovar',  null=True)
+    myuser = models.CharField(max_length=120, default='Kate', editable=False)
 
     MONTH = (
         ('1', '01'),
@@ -49,9 +50,14 @@ class ScladTov(models.Model):
         ('23', '2023'),
         ('24', '2024'),
         ('25', '2025'),
+        ('26', '2026'),
+        ('27', '2027'),
+        ('28', '2028'),
+        ('29', '2029'),
+        ('0', '-'),
     )
 
     srokgod = models.CharField(max_length=2, choices=MY_YEARS, blank=False, default=MY_YEARS[2])
     kol = models.IntegerField(default=1)
     def __str__(self):              # __unicode__ on Python 2
-        return self.tovars,self.srokmes+'/'+self.srokgod
+        return self.mytovars,self.srokmes+'/'+self.srokgod
