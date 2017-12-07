@@ -44,7 +44,9 @@ def tov_edit(request, pk):
         if form.is_valid():
             tovarcik = form.save(commit=False)
             tovarcik.save()
-            return redirect('tov_edit', pk=tovarcik.pk)
+            #return redirect('tov_edit', pk=tovarcik.pk)
+            tov=Tovar.objects.order_by("full_name")
+            return render(request, 'sclad/tovar.html', {'tovar': tov, 'username':auth.get_user(request).username})
     else:
         form = TovarForm(instance=tovarcik)
     return render(request, 'sclad/tov_edit.html', {'TovarNewForm': form, 'username':auth.get_user(request).username})
@@ -74,7 +76,12 @@ def scladtov_edit(request, pk):
         if form.is_valid():
             tovarcik = form.save(commit=False)
             tovarcik.save()
-            return redirect('scladtov_edit', pk=tovarcik.pk)
+            #return redirect('scladtov_edit', pk=tovarcik.pk)
+            if request.user.is_authenticated():
+                Scladik = ScladTov.objects.filter(myuser=request.user).order_by('mytovars')
+            else:
+                Scladik = ScladTov.objects.order_by('mytovars')
+            return render(request, 'sclad/minisclad.html', {'tovar': Scladik, 'username':auth.get_user(request).username})
     else:
         form = ScladTovForm(instance=tovarcik)
     return render(request, 'sclad/scladtov_edit.html', {'ScladTovForm': form, 'username':auth.get_user(request).username})
@@ -82,8 +89,11 @@ def scladtov_edit(request, pk):
 def scladtov_del(request, pk):
     tovarcik = get_object_or_404(ScladTov, pk=pk)
     tovarcik.delete()
-    tov = ScladTov.objects.order_by('mytovars')
-    return render(request, 'sclad/minisclad.html', {'tovar': tov, 'username':auth.get_user(request).username})
+    if request.user.is_authenticated():
+        Scladik = ScladTov.objects.filter(myuser=request.user).order_by('mytovars')
+    else:
+        Scladik = ScladTov.objects.order_by('mytovars')
+    return render(request, 'sclad/minisclad.html', {'tovar': Scladik, 'username':auth.get_user(request).username})
 
 def login(request):
     args={}
@@ -104,7 +114,6 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
-
     
 def scladtov_srokgod(request):
     mydate=datetime.today()
@@ -126,3 +135,25 @@ def scladtov_prosrocheno(request):
     god=int(tt)
     Scladik = ScladTov.objects.filter(srokgod=str(god)).order_by('mytovars')
     return render(request, 'sclad/minisclad1year.html', {'tovar': Scladik, 'username':auth.get_user(request).username})
+
+def scladtov_minus(request, pk):
+    tovarcik = get_object_or_404(ScladTov, pk=pk)
+    tovarcik.kol = tovarcik.kol-1      
+    tovarcik.save()
+    if request.user.is_authenticated():
+        Scladik = ScladTov.objects.filter(myuser=request.user).order_by('mytovars')
+    else:
+        Scladik = ScladTov.objects.order_by('mytovars')
+    return render(request, 'sclad/minisclad.html', {'tovar': Scladik, 'username':auth.get_user(request).username})
+
+def scladtov_plus(request, pk):
+    tovarcik = get_object_or_404(ScladTov, pk=pk)
+    tovarcik.kol = tovarcik.kol+1      
+    tovarcik.save()
+    if request.user.is_authenticated():
+        Scladik = ScladTov.objects.filter(myuser=request.user).order_by('mytovars')
+    else:
+        Scladik = ScladTov.objects.order_by('mytovars')
+    return render(request, 'sclad/minisclad.html', {'tovar': Scladik, 'username':auth.get_user(request).username})
+    
+   

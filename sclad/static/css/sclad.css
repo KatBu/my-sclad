@@ -60,3 +60,10 @@ td{
 .dropdown-menu a{
     color: black;
 }
+.glyphicon-minus{
+    background-size: 12px 12px;
+}
+.glyphicon-plus{
+    background-size: 12px 12px;
+    height: 12px;
+}
