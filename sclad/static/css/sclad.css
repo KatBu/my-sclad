@@ -1,0 +1,62 @@
+
+.page-header {
+    background-color: #F7819F;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 20px 20px 20px 20px;
+}
+
+.page-header h1,h2,h3{
+    color: #000000;
+    font-size: 36pt;
+    text-decoration: none;
+    font-family: 'Lobster', cursive;
+}
+
+.content {
+    margin-left: 40px;
+    margin-top:  20px;
+    font-family: Georgia  ;
+}
+.content h1{
+    font-family: 'Lobster', cursive;
+    font-size: 24pt; 
+    padding: 0px 15px;
+}
+table{
+ font-size: 18px; 
+ padding:5px;
+  margin: auto;
+ width: 100%;
+}
+td{
+    padding: 5px;
+}
+.cifr{
+    text-align:center;
+}
+.glyphicon-plus {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.top-menu {
+    color: white;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px; 
+    margin-top: 20px;
+}
+
+.navbar-inverse {
+   font-size: 16pt;
+}
+.navbar-inverse .navbar-nav li a{
+    color: #BDBDBD;
+}
+.navbar-inverse .navbar-nav li  ul > li > a{
+    color: black;
+}
+.dropdown-menu a{
+    color: black;
+}

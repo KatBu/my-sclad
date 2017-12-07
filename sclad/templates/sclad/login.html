@@ -1,0 +1,19 @@
+{% extends 'sclad/base.html' %}
+
+{% block content %}    
+    <div  class="login">     
+    	<form method="POST" action="/auth/login/">
+    		{% csrf_token %}
+    	    	<label for="username">Имя пользователя</label>
+    	    	<input type="text" name="username" id="username">
+    	    	<label for="password">Пароль</label>
+    	    	<input type="password" name="password" id="password">
+    	    {% if login_error %}
+   		     	<label class="error">{{login_error}}</label>
+    	    {% endif %}
+            <br>
+    	    <button type="button" class="back btn btn-default"> <a href="{% url 'sclad_tovar'%}" class="btnback">Back</a></button>
+            <button type="submit" class="save btn btn-default">Войти</button>
+    	</form>      
+    </div>
+{% endblock %}

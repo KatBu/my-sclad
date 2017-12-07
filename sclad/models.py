@@ -23,8 +23,7 @@ class ScladTov(models.Model):
     """
     mytovars = models.ForeignKey(
     		'Tovar',  null=True)
-    myuser = models.CharField(max_length=120, default='Kate', editable=False)
-
+    myuser = models.ForeignKey('auth.User')
     MONTH = (
         ('1', '01'),
         ('2', '02'),
@@ -60,4 +59,4 @@ class ScladTov(models.Model):
     srokgod = models.CharField(max_length=2, choices=MY_YEARS, blank=False, default=MY_YEARS[2])
     kol = models.IntegerField(default=1)
     def __str__(self):              # __unicode__ on Python 2
-        return self.mytovars,self.srokmes+'/'+self.srokgod
+        return self.srokgod

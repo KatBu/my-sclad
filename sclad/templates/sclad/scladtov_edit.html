@@ -1,0 +1,10 @@
+{% extends 'sclad/base.html' %}
+
+{% block content %}
+    <h1>Товар на склад</h1>
+    <form method="POST" class="scladtov-edit">{% csrf_token %}
+        {{ ScladTovForm.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+		<a class="btn btn-default" href="{% url 'minisclad'%}"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    </form>
+{% endblock %}

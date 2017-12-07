@@ -1,0 +1,19 @@
+{% extends 'sclad/base.html' %}
+{% block content %}
+    <TABLE border="1" table-layout="auto">
+        <tr>
+            <th> <h1>Товар</h1></th>
+            <th> <h1>Срок</h1></th>
+            <th> <h1>Количество</h1></th>
+        </tr>
+        {% for it in tovar %}   
+        <div  class="zap">         
+            <tr>
+                <td> {{ it.mytovars}}</td>
+                <td class="cifr"> {{ it.srokmes}}/{{ it.srokgod}}</td>
+                <td class="cifr"> {{ it.kol}}</td>  
+            </tr>    
+        </div>                    
+        {% endfor %}
+    </TABLE>
+{% endblock %}

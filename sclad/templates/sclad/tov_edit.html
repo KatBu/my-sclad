@@ -1,0 +1,10 @@
+{% extends 'sclad/base.html' %}
+
+{% block content %}
+    <h1>Новый товар</h1>
+    <form method="POST" class="tov-edit">{% csrf_token %}
+        {{ TovarNewForm.as_p }}
+        <button type="submit" class="save btn btn-default">Сохранить</button>
+        <button type="button" class="back btn btn-default"> <a href="{% url 'sclad_tovar'%}" class="btnback">Back</a></button>
+    </form>
+{% endblock %}
